@@ -41,7 +41,7 @@ def updateNeighbors(r, c, arr, flashed):
     return arr, flashed
 
 
-def solution(arr, iterations):
+def solution(arr):
     count = 0
     i = 0
     while True:
@@ -59,4 +59,4 @@ def solution(arr, iterations):
         if all(all(item == 0 for item in items) for items in arr):
             return i
 
-print(solution(lines, 1000))
+print(solution(lines))
