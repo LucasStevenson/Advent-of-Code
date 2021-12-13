@@ -11,17 +11,18 @@ with open(infile) as f:
         if a != "start" and b != "end": obj[b].append(a) 
         line = f.readline().rstrip()
 
-def solution(key, seq=[], paths=[]):
+def solution(key, seq=[]):
+    numPaths = 0
     for i in obj[key]:
         sc = seq.copy()
         c = Counter(sc)
         if i == "end":
-            paths.append(sc)
+            numPaths += 1
             continue
         if i.islower() and any(v == 2 for k,v in c.items() if k.islower()) and i in sc:
             continue
         sc.append(i)
-        solution(i, sc, paths)
-    return len(paths)
+        numPaths += solution(i, sc)
+    return numPaths
 
 print(solution("start"))
