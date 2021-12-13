@@ -2,38 +2,28 @@ import sys
 infile = sys.argv[1] if len(sys.argv) > 1 else "input.txt"
 
 with open(infile) as f:
-    lines = [ line.rstrip() for line in f.readlines() if line.strip() ] 
+    lines = [ line.rstrip() for line in f.readlines() if line.strip() ]
 
-def findMostCommon(arr, t):
+def getMostCommonBit(arr):
     count = 0
     for i in arr:
-        i = int(i)
-        count += i
-    ans = float(count)/len(arr)
-    if ans == 0.5:
-        return 1
-    #print(ans)
+        count += int(i)
+    ans = count/len(arr)
+    # if there's same amount of 0's and 1's, return 1
+    if ans == 0.5: return 1
     return round(ans)
 
+def solution(rating):
+    arr = lines.copy()
+    idx = 0
+    while len(arr) > 1:
+        transposedBits = list(zip(*arr))
+        bit = getMostCommonBit(transposedBits[idx]) if rating == "oxygen" else not getMostCommonBit(transposedBits[idx])
+        for i, num in enumerate(arr):
+            if int(num[idx]) != bit:
+                arr[i] = None
+        arr = list(filter(lambda el: el != None, arr))
+        idx += 1
+    return int(arr[0], 2)
 
-def getO(lines, t):
-    i = 0
-    while len(lines) > 1:
-        transposed = list(zip(*lines))
-        if t == "O2":
-            oxy = findMostCommon(transposed[i], t)
-        else:
-            oxy = int(not findMostCommon(transposed[i], t))
-        newLines = []
-        for el in lines:
-            if int(el[i]) == oxy:
-                newLines.append(el)
-        lines = newLines.copy()
-        i += 1
-    return lines[0]
-
-A = (int((getO(lines, "co2")), 2))
-B = (int((getO(lines, "O2")), 2))
-
-print((A, B))
-print(A*B)
+print(solution("oxygen") * solution("co2"))
