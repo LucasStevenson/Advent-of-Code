@@ -12,7 +12,6 @@ with open(infile) as f:
         line = f.readline().rstrip()
 
 def solution(key, seq=[], paths=[]):
-    count = 0
     for i in obj[key]:
         sc = seq.copy()
         if i == "end":
