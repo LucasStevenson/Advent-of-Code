@@ -3,12 +3,9 @@ from collections import defaultdict
 
 infile = sys.argv[1] if len(sys.argv) > 1 else "input.txt"
 
-with open(infile) as f:
-    line = f.readline().rstrip()
-    lines = []
-    while line:
-        lines.append(list(map(int, list(line))))
-        line = f.readline().rstrip()
+lines = []
+for line in open(infile):
+    lines.append([int(x) for x in line.strip()])
 
 r, c = 0, 0
 distances = defaultdict(lambda: float("inf"))
