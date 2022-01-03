@@ -1,11 +1,11 @@
 # 🎄 Advent of Code 🎄
 
-Advent of code is a yearly event where a two part challenge/puzzle is released daily from December 1st to the 25th.
-
-This repository has my solutions for the puzzles I was able to solve.
+Advent of code is a yearly event where a two part challenge/puzzle is released daily from December 1st to the 25th. This repository has my solutions for the puzzles I was able to solve.
 
 ⭐ = Both parts completed
+
 ★ = Only first part completed
+
 ❌ = Neither part completed
 
 ## 2021
