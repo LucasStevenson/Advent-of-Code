@@ -12,11 +12,11 @@ while p1Score < 1000 and p2Score < 1000:
     rollTotal = diceRolls + (diceRolls+1) + (diceRolls+2)
     count += 3
     if player1:
-        p1Space = (p1Space+rollTotal) % 10
-        p1Score += p1Space if p1Space != 0 else 10
+        p1Space = (p1Space+rollTotal - 1) % 10 + 1
+        p1Score += p1Space
     else:
-        p2Space = (p2Space+rollTotal) % 10
-        p2Score += p2Space if p2Space != 0 else 10
+        p2Space = (p2Space+rollTotal - 1) % 10 + 1
+        p2Score += p2Space
     diceRolls += 3
     diceRolls %= 100
     player1 = not player1
