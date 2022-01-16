@@ -13,15 +13,13 @@ with open(infile) as f:
 
 def solution(key, seq=[]):
     numPaths = 0
-    for i in obj[key]:
-        sc = seq.copy()
-        if i == "end":
+    for adjacentNode in obj[key]:
+        if adjacentNode == "end":
             numPaths += 1
             continue
-        if i.islower() and i in sc:
+        if adjacentNode.islower() and adjacentNode in seq:
             continue
-        sc.append(i)
-        numPaths += solution(i, sc)
+        numPaths += solution(adjacentNode, seq+[adjacentNode])
     return numPaths
 
 print(solution("start"))
