@@ -13,16 +13,15 @@ with open(infile) as f:
 
 def solution(key, seq=[]):
     numPaths = 0
-    for i in obj[key]:
-        sc = seq.copy()
-        c = Counter(sc)
-        if i == "end":
+    c = Counter(seq)
+    visitedSmallCaveTwice = any(v==2 for k,v in c.items() if k.islower())
+    for adjacentNode in obj[key]:
+        if adjacentNode == "end":
             numPaths += 1
             continue
-        if i.islower() and any(v == 2 for k,v in c.items() if k.islower()) and i in sc:
+        if adjacentNode.islower() and visitedSmallCaveTwice and adjacentNode in seq:
             continue
-        sc.append(i)
-        numPaths += solution(i, sc)
+        numPaths += solution(adjacentNode, seq+[adjacentNode])
     return numPaths
 
 print(solution("start"))
