@@ -3,14 +3,7 @@ import sys
 infile = sys.argv[1] if len(sys.argv) > 1 else "input.txt"
 
 with open(infile) as f:
-    line = f.readline().rstrip()
-    sigPatterns = []
-    outputVals = []
-    while line:
-        first, second  = line.split(" | ")
-        outputVals.append(second)
-        sigPatterns.append(first)
-        line = f.readline().rstrip()
+    lines = [ line.rstrip().split(" | ") for line in f.readlines() ]
 perms = list(permutations("abcdefg"))
 
 '''
@@ -47,10 +40,10 @@ def getConfig(pattern):
             return perm
 
 ans = 0
-for i in range(len(outputVals)):
-    config = getConfig(sigPatterns[i])
+for sigPattern, outputVal in lines:
+    config = getConfig(sigPattern)
     n = ""
-    for seq in outputVals[i].split():
+    for seq in outputVal.split():
         n += str(arr.index(sorted([ config.index(c) for c in seq ])))
     ans += int(n)
 
