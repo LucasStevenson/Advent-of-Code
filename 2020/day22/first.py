@@ -18,11 +18,9 @@ def getWinner(p1, p2):
         p2Top = p2.pop(0)
 
         if p1Top > p2Top:
-            p1.append(p1Top)
-            p1.append(p2Top)
+            p1 += [p1Top, p2Top]
         else:
-            p2.append(p2Top)
-            p2.append(p1Top)
+            p2 += [p2Top, p1Top]
     return p1 or p2
 
 winner = getWinner(p1, p2)
