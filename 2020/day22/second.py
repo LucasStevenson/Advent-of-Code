@@ -5,9 +5,8 @@ with open(infile) as f:
     p1, p2 = [], []
     player = None
     lines = [ line.rstrip() for line in f.readlines() if line.strip()  ]
-
     for line in lines:
-        if line == "Player 1:" or line == "Player 2:":
+        if "Player" in line:
             player = line
             continue
         p1.append(int(line)) if player == "Player 1:" else p2.append(int(line))

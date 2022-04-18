@@ -5,18 +5,15 @@ with open(infile) as f:
     p1, p2 = [], []
     player = None
     lines = [ line.rstrip() for line in f.readlines() if line.strip()  ]
-
     for line in lines:
-        if line == "Player 1:" or line == "Player 2:":
+        if "Player" in line:
             player = line
             continue
         p1.append(int(line)) if player == "Player 1:" else p2.append(int(line))
 
 def getWinner(p1, p2):
     while len(p1) > 0 and len(p2) > 0:
-        p1Top = p1.pop(0)
-        p2Top = p2.pop(0)
-
+        p1Top, p2Top = p1.pop(0), p2.pop(0)
         if p1Top > p2Top:
             p1 += [p1Top, p2Top]
         else:
