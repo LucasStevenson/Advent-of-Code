@@ -8,25 +8,21 @@ for line in open(infile):
     startingCave.append([ int(x) for x in line.strip() ])
 
 def getRemainingRightTiles(row, n):
-    if n == 0:
-        return []
-    newArr = []
-    for el in row:
-        newArr.append(el+1 if el != 9 else 1)
-    newArr += getRemainingRightTiles(newArr, n-1)
-    return newArr
+    remainingRightTiles = []
+    for i in range(n):
+        for el in row:
+            remainingRightTiles.append((el+i)%9+1)
+    return remainingRightTiles
 
 def getRemainingDownTiles(table, n):
-    if n == 0:
-        return []
-    newArr = []
-    for r in range(len(table)):
-        t = []
-        for c in range(len(table[r])):
-            t.append(table[r][c]+1 if table[r][c] != 9 else 1)
-        newArr.append(t)
-    newArr += getRemainingDownTiles(newArr, n-1)
-    return newArr
+    remainingDownTiles = []
+    for i in range(n):
+        for r in range(len(table)):
+            t = []
+            for c in range(len(table[r])):
+                t.append((table[r][c]+i)%9+1)
+            remainingDownTiles.append(t)
+    return remainingDownTiles
 
 startingCave += getRemainingDownTiles(startingCave, 4)
 cave = []
