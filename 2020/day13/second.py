@@ -1,33 +1,25 @@
 #!/usr/bin/env python3
 import math
 with open("input.txt") as f:
-    busIDs = f.readlines()
-    del busIDs[0]
-    busIDs = [busID.rstrip() for busID in busIDs[0].split(",") if busID.strip()]
+    busIDs = f.readlines()[1].rstrip().split(",")
 
-rem = []
-for i in range(len(busIDs)):
-    if busIDs[i] == "x":
-        continue
-    rem.append(int(busIDs[i])-i)
-
+rems = [-1*i for i in range(len(busIDs)) if busIDs[i] != "x"]
 busIDs = [int(x) for x in busIDs if x != "x"]
-
-def findMinX(busIDs, rem):
-    prod = math.prod(busIDs) # product of all busIDs
-    return sum([rem[index]*(prod//busID)*pow(prod//busID,-1,busID) for index, busID in enumerate(busIDs)]) % prod
-
 '''
-This function does the same thing as the one above but with an extra loop. I'm keeping it here because I feel it's easier to read and understand.
+The chinese remainder theorem is used to solve a system of linear congruences where all the moduli are relatively coprime. What we have right now looks like this:
 
-def findMinX(busIDs, rem):
-    prod = math.prod(busIDs) # product of all busIDs
-    pp = [] # pp[i] = product / busIDs[i]
-    inv = [] # modular inverse of pp[i] and busIDs[i]
-    for busID in busIDs:
-        pp.append(prod//busID)
-        inv.append(pow(prod//busID, -1, busID))
-    return sum([rem[i]*pp[i]*inv[i] for i in range(len(busIDs))])%prod
+x = rems[0] (mod busIDs[0])
+x = rems[1] (mod busIDs[1])
+...
+x = rems[i] (mod busIDs[i])
+
+We can use this formula to find the solution: x = (∑(ai*Ni*Mi)) mod N
+- N = product of all moduli (busIDs)
+- ai = rems[i]
+- Ni = N / busIDs[i]
+- Mi = modinverse(Ni, busIDs[i])
 '''
-
-print(findMinX(busIDs, rem))
+def CRT(remainders, moduli):
+    N = math.prod(moduli)
+    return sum([a*(N//n)*pow(N//n,-1,n) for a, n in zip(remainders, moduli)]) % N
+print(CRT(rems, busIDs))
