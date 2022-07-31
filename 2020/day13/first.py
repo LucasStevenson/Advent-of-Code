@@ -1,20 +1,13 @@
 #!/usr/bin/env python3
 import math
-
 with open("input.txt") as f:
-    lines = f.readlines()
-    lines = [line.rstrip() for line in lines if line.strip()]
-    lines[1] = [int(i) for i in lines[1].split(",") if i != "x"]
-
-timestamp = float(lines[0])
-buses = lines[1]
-
+    timestamp, buses = f.readlines()
+    buses = [ int(num) for num in buses.split(",") if num != "x" ]
+    timestamp = float(timestamp)
 
 # UPDATED SOLUTION
-
 closestTimes = [int(x * (math.ceil(timestamp / x))) for x in buses]
-print(int(min(closestTimes)-timestamp) *
-      buses[closestTimes.index(min(closestTimes))])
+print(int(min(closestTimes)-timestamp) * buses[closestTimes.index(min(closestTimes))])
 
 '''
 # OLD SOLUTION
