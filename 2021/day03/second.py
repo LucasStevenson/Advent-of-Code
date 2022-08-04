@@ -5,9 +5,7 @@ with open(infile) as f:
     lines = [ line.rstrip() for line in f.readlines() if line.strip() ]
 
 def getMostCommonBit(arr):
-    count = 0
-    for i in arr:
-        count += int(i)
+    count = sum(map(int, arr))
     ans = count/len(arr)
     # if there's same amount of 0's and 1's, return 1
     if ans == 0.5: return 1
@@ -18,7 +16,8 @@ def solution(rating):
     idx = 0
     while len(arr) > 1:
         transposedBits = list(zip(*arr))
-        bit = getMostCommonBit(transposedBits[idx]) if rating == "oxygen" else not getMostCommonBit(transposedBits[idx])
+        mostCommonBit = getMostCommonBit(transposedBits[idx])
+        bit = mostCommonBit if rating == "oxygen" else not mostCommonBit
         for i, num in enumerate(arr):
             if int(num[idx]) != bit:
                 arr[i] = None

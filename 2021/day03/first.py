@@ -7,15 +7,13 @@ with open(infile) as f:
     # print(lines[0])
 
 def findMostCommon(arr):
-    count = 0
-    for i in arr:
-        i = int(i)
-        count += i
+    count = sum(map(int, arr))
     return round(count/len(arr))
 
 G, E = "", ""
 for r in range(0, len(lines)):
-    G += str(findMostCommon(lines[r]))
-    E += str(int(not findMostCommon(lines[r])))
+    mostCommonBit = findMostCommon(lines[r])
+    G += str(mostCommonBit)
+    E += str(int(not mostCommonBit))
 #print((G,E))
 print(int(G, 2) * int(E, 2))
