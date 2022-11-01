@@ -32,9 +32,8 @@ print(len(numBags("shiny gold")))
 # OLD SOLUTION
 '''
 import json
-'''
 https://adventofcode.com/2020/day/7
-'''
+
 with open("input.txt") as f:
     line = f.readline()
     inputs = {}
