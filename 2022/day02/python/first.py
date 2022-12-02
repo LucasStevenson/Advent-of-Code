@@ -6,7 +6,9 @@ with open(infile) as f:
     # B, Y for paper, 2
     # C, Z scissors, 3
     # lost: 0, draw: 3, win: 6
-    outcomes = {
+    outcomesToPoints = {
+            # key = possible outcome
+            # value = points I get from outcome
             "AX": 3,
             "AY": 6,
             "AZ": 0,
@@ -17,11 +19,10 @@ with open(infile) as f:
             "CY": 0,
             "CZ": 3
     }
-    # how much rock, paper, scissors is worth
-    weights = { "X": 1, "Y": 2, "Z": 3 }
+    weights = { "X": 1, "Y": 2, "Z": 3 } # how much rock, paper, scissors is worth
     score = 0
     for line in f.readlines():
         line = line.replace(" ", "").rstrip()
         score += weights[line[1]]
-        score += outcomes[line]
+        score += outcomesToPoints[line]
     print(score)

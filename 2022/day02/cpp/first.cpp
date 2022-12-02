@@ -6,7 +6,9 @@ using namespace std;
 
 int solution(ifstream& file) {
     string line;
-    map<string, int> outcomes = {
+    map<string, int> outcomesToPoints = {
+        // each key is a possible game outcome (input)
+        // each value are the points I would get from the corresponding key
         {"AX", 3},
         {"AY", 6},
         {"AZ", 0},
@@ -18,9 +20,9 @@ int solution(ifstream& file) {
         {"CZ", 3}};
     int score = 0;
     while (getline(file, line)) {
-        line.erase(remove(line.begin(), line.end(), ' '), line.end());
+        line.erase(remove(line.begin(), line.end(), ' '), line.end()); // remove spaces
         score += line[1] - 'X' + 1;
-        score += outcomes[line];
+        score += outcomesToPoints[line];
     }
     return score;
 }
@@ -33,4 +35,6 @@ int main(int argc, char** argv) {
         return 1;
     }
     cout << solution(file) << endl;
+    file.close();
+    return 0;
 }

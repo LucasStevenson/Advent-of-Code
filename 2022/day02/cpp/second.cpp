@@ -8,12 +8,12 @@ int solution(ifstream& file) {
     string line;
     int score = 0;
     map<char, int> weights = {{'A', 1}, {'B', 2}, {'C', 3}};
+    // for both `iWin` and `iLose` maps, {opponentsMove: myMove}
     map<char, char> iWin = {
         {'A', 'B'},
         {'B', 'C'},
         {'C', 'A'}};
-    map<char, char> iLose;
-    // inverted `iWin` map
+    map<char, char> iLose; // inverted `iWin` map
     for (map<char,char>::iterator i = iWin.begin(); i != iWin.end(); i++) {
         iLose[i->second] = i->first;
     }
@@ -40,4 +40,6 @@ int main(int argc, char** argv) {
         return 1;
     }
     cout << solution(file) << endl;
+    file.close();
+    return 0;
 }
