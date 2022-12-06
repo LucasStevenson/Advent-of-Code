@@ -28,7 +28,7 @@ int solution(ifstream& file) {
 }
 
 int main(int argc, char** argv) {
-    string infile = argc == 2 ? argv[1] : "input.txt";
+    string infile = argc == 2 ? argv[1] : "../input.txt";
     ifstream file(infile);
     if (!file.is_open()) {
         cerr << "Error while trying to open '" << infile << "'" << endl;

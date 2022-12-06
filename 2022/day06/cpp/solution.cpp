@@ -15,7 +15,7 @@ int solution(string line, int n) {
 }
 
 int main(int argc, char** argv) {
-    string infile = argc == 2 ? argv[1] : "input.txt";
+    string infile = argc == 2 ? argv[1] : "../input.txt";
     ifstream file(infile);
     string line;
     getline(file, line);

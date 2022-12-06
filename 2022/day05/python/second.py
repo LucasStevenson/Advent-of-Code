@@ -1,7 +1,7 @@
 import sys
 from collections import defaultdict, deque
 import re
-infile = sys.argv[1] if len(sys.argv) > 1 else "input.txt"
+infile = sys.argv[1] if len(sys.argv) > 1 else "../input.txt"
 
 obj = defaultdict(deque) # {crateNumber: corresponding stack}
 with open(infile) as f:

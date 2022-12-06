@@ -27,7 +27,7 @@ int solution(std::ifstream& file) {
 
 int main(int argc, char** argv) {
     // challenge input parsing
-    std::string infile = argc == 2 ? argv[1] : "input.txt";
+    std::string infile = argc == 2 ? argv[1] : "../input.txt";
     std::ifstream file(infile);
     if (!file.is_open()) {
         std::cerr << "Failed to open '" << infile << "'" << std::endl;

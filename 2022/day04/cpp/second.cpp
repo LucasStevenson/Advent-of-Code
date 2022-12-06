@@ -32,7 +32,7 @@ int solution(ifstream& file) {
 }
 
 int main(int argc, char** argv) {
-    string infile = argc == 2 ? argv[1] : "input.txt";
+    string infile = argc == 2 ? argv[1] : "../input.txt";
     ifstream file(infile);
     cout << solution(file) << endl;
     file.close();
