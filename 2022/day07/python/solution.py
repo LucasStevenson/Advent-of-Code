@@ -7,12 +7,13 @@ with open(infile) as f:
 
 tree = {}
 path = []
-def updateCurrPath(path):
-    currPath = tree
-    for p in path:
-        currPath = currPath[p]
-    return currPath
 currPath = tree
+def updateCurrPath(path):
+    treePtr = tree
+    for p in path:
+        treePtr = treePtr[p]
+    return treePtr
+
 for line in lines:
     if line[0] == "$":
         if "ls" in line:
@@ -47,5 +48,10 @@ def get_all_dir_sizes(t):
     dir_sizes.append(size)
     return size
 
-get_all_dir_sizes(tree)
-print(sum([ x for x in dir_sizes if x <= 100000 ]))
+totalSize = get_all_dir_sizes(tree)
+# part 1
+print("Part 1:", sum([ x for x in dir_sizes if x <= 100000 ]))
+# part 2
+unusedSpace = 70000000 - totalSize
+deleteSize = 30000000 - unusedSpace
+print("Part 2:", min([ v for v in dir_sizes if v >= deleteSize ]))
