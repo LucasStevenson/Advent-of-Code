@@ -1,6 +1,5 @@
 import sys
 import re
-import math
 from collections import defaultdict
 infile = sys.argv[1] if len(sys.argv) > 1 else "../input.txt"
 
@@ -13,14 +12,14 @@ def parseInput(monkeys):
     for monkeyNum, monkey in enumerate(monkeys):
         startingItems = re.search(r"Starting items: (.*)\n", monkey).group(1).split(", ")
         operation = re.search(r"new = old (.*)\n", monkey).group(1)
-        divisBy = int(re.search(r"divisible by (\d+)\n", monkey).group(1))
+        divisBy = re.search(r"divisible by (\d+)\n", monkey).group(1)
         testTrue = re.search(r"true: throw to monkey (\d+)", monkey).group(1)
         testFalse = re.search(r"false: throw to monkey (\d+)", monkey).group(1)
         N *= divisBy
         monkeyInfo[monkeyNum] = {
                 "startingItems": startingItems,
                 "operation": operation,
-                "divisBy": divisBy,
+                "divisBy": int(divisBy),
                 "testTrue": int(testTrue),
                 "testFalse": int(testFalse)
         }
