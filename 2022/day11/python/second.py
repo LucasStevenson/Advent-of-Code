@@ -15,7 +15,7 @@ def parseInput(monkeys):
         divisBy = re.search(r"divisible by (\d+)\n", monkey).group(1)
         testTrue = re.search(r"true: throw to monkey (\d+)", monkey).group(1)
         testFalse = re.search(r"false: throw to monkey (\d+)", monkey).group(1)
-        N *= divisBy
+        N *= int(divisBy)
         monkeyInfo[monkeyNum] = {
                 "startingItems": startingItems,
                 "operation": operation,
