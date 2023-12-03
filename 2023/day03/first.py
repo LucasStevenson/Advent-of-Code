@@ -1,4 +1,5 @@
 import sys
+import itertools
 infile = sys.argv[1] if len(sys.argv) > 1 else "input.txt"
 
 with open(infile) as f:
@@ -7,7 +8,7 @@ with open(infile) as f:
         grid.append(list(line))
 
 def is_adj_to_symbol(r, c):
-    for dr, dc in [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 0), (0, 1), (1,-1), (1,0), (1,1)]:
+    for dr, dc in itertools.product((-1,0,1), (-1,0,1)):
         rr, cc = r+dr, c+dc
         if not (0 <= rr < len(grid) and 0 <= cc < len(grid[rr])):
             continue

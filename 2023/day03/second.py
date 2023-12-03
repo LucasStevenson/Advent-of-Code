@@ -1,5 +1,6 @@
 import sys
 import math
+import itertools
 import re
 infile = sys.argv[1] if len(sys.argv) > 1 else "input.txt"
 
@@ -19,7 +20,7 @@ with open(infile) as f:
 
 def check_valid_gear(r, c):
     partNum_coords = set() # holds the coordinates of all adjacent `part numbers`
-    for dr, dc in [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 0), (0, 1), (1,-1), (1,0), (1,1)]:
+    for dr, dc in itertools.product((-1,0,1), (-1,0,1)):
         rr, cc = r+dr, c+dc
         if not (0 <= rr < len(grid) and 0 <= cc < len(grid[rr])):
             continue
