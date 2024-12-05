@@ -19,5 +19,5 @@ for r in range(len(lines)):
         if lines[r][c] != 'X':
             continue
         for dr, dc in [(-1,-1), (0,-1), (1,-1), (-1,0), (1,0), (-1,1), (0,1), (1,1)]:
-            ans += bool(checkMatch(r, c, dr, dc))
+            ans += int(checkMatch(r, c, dr, dc))
 print(ans)

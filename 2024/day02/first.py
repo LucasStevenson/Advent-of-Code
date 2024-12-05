@@ -14,5 +14,5 @@ with open(infile) as f:
     ans = 0
     while line := f.readline().strip():
         splitted = list(map(int, line.split()))
-        ans += bool(isGoodLine(splitted))
+        ans += int(isGoodLine(splitted))
     print(ans)
