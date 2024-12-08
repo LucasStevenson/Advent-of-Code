@@ -4,7 +4,7 @@ infile = sys.argv[1] if len(sys.argv) > 1 else "input.txt"
 
 with open(infile) as f:
     GRID = []
-    D = defaultdict(list) # { symbol: [(x, y) positions] }
+    D = defaultdict(list) # { symbol: [(r, c) positions] }
     for r, line in enumerate(f.readlines()):
         line = line.strip()
         GRID.append(list(line))
