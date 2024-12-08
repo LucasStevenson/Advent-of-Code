@@ -11,18 +11,17 @@ with open(infile) as f:
         for c in range(len(line)):
             if line[c] != '.':
                 D[line[c]].append((r, c))
-
 seen = set()
 for symbol, positions in D.items():
     for i in range(len(positions)):
         for j in range(i+1, len(positions)):
-            xi, yi = positions[i]
-            xj, yj = positions[j]
-            x_dist, y_dist = xj-xi, yj-yi # calculate the distance between each pair of points
-            xxi, yyi = xi-x_dist, yi-y_dist
-            xxj, yyj = xj+x_dist, yj+y_dist
-            if (0 <= xxi < len(GRID)) and (0 <= yyi < len(GRID[0])):
-                seen.add((xxi, yyi))
-            if (0 <= xxj < len(GRID) and (0 <= yyj < len(GRID[0]))):
-                seen.add((xxj, yyj))
+            ri, ci = positions[i]
+            rj, cj = positions[j]
+            r_dist, c_dist = rj-ri, cj-ci # calculate the distance between each pair of points
+            rri, cci = ri-r_dist, ci-c_dist
+            rrj, ccj = rj+r_dist, cj+c_dist
+            if (0 <= rri < len(GRID)) and (0 <= cci < len(GRID[0])):
+                seen.add((rri, cci))
+            if (0 <= rrj < len(GRID) and (0 <= ccj < len(GRID[0]))):
+                seen.add((rrj, ccj))
 print(len(seen))
